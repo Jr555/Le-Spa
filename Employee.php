@@ -23,23 +23,20 @@ include('server1.php');
 
    <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="Employee.php">Home <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="Employee.php">Employee</a>
+        <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Customer.php">Customer</a>
+        <a class="nav-link" href="Customer.php?username=<?php echo $_GET['username'];?>">Customer</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Services.php">Service</a>
+        <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
       </li> 
 	  <li class="nav-item">
-        <a class="nav-link" href="Income Reports.php">Income Reports</a>
+        <a class="nav-link" href="IncomeReports.php?username=<?php echo $_GET['username'];?>">Income Reports</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Commission Reports.php">Commission Reports</a>
+        <a class="nav-link" href="CommissionReports.php?username=<?php echo $_GET['username'];?>">Commission Reports</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -64,6 +61,7 @@ include('server1.php');
 	if(isset($_GET['username'])){
 		$username = $_GET['username'];
 		$results = mysqli_query($db, "SELECT * FROM users,employee WHERE users.username = '$username' AND employee.username = '$username'");
+	}
 ?>
 	<form method="post" action="" >
 <table class="table table-dark">
@@ -78,6 +76,7 @@ include('server1.php');
 			<th>FirstName</th>
 			<th>Middle Initial</th>
 			<th>Lastname</th>
+			<th>Extention</th>
 			<th colspan="2">UPDATE</th>
 		</tr>
 	</thead>
@@ -87,6 +86,7 @@ include('server1.php');
 			<td><?php echo $row['firstname']; ?></td>
 			<td><?php echo $row['middle_initial']; ?></td>
 			<td><?php echo $row['lastname']; ?></td>
+			<td> <?php echo $row['Ext']; ?></td>
 			<td>
 				<a href="edit.php?edit=<?php echo $row['employee_no']; ?>" class="edit employee_btn" >Edit</a>
 			</td>
@@ -95,7 +95,8 @@ include('server1.php');
 			</td>
 		</tr>
 	<?php } 
-	} ?>
+	
+?>
 </table>
 	
 
@@ -115,7 +116,16 @@ include('server1.php');
 	<div class="input-group">
 		<label>Employee Lastname :</label>
 		<input type="text" name="lastname" required value="<?php echo $lastname; ?>">
-	</div></font><br>
+		<select name="Ext">
+    	 <option value="">Ext</option>
+    	 <option value=""></option>
+         <option value="Jr">Jr</option>
+         <option value="Sr">Sr</option>
+         <option value="II">II</option>
+         <option value="III">III</option>
+        </select>
+	</div>
+    </font><br>
 	<div class="input-group">
 
 		<?php if ($update == true): ?>
