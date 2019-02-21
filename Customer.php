@@ -1,5 +1,5 @@
 <?php 
-include('customer server.php');
+include('customer_server.php');
 
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ include('customer server.php');
 </head>
 <body style="background: url('co.jpg');
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: cover;
     background-position: center; 
     height: 400px;">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,23 +23,20 @@ include('customer server.php');
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="Employee.php">Home <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="Employee.php">Employee</a>
+        <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Customer.php">Customer</a>
+        <a class="nav-link" href="Customer.php?username=<?php echo $_GET['username'];?>">Customer</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Services.php">Service</a>
+        <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
       </li> 
 	  <li class="nav-item">
-        <a class="nav-link" href="Income Reports.php">Income Reports</a>
+        <a class="nav-link" href="IncomeReports.php?username=<?php echo $_GET['username'];?>">Income Reports</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Commission Reports.php">Commission Reports</a>
+        <a class="nav-link" href="CommissionReports.php?username=<?php echo $_GET['username'];?>">Commission Reports</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -63,44 +60,49 @@ include('customer server.php');
 <?php
 	if(isset($_GET['username'])){
 		$username = $_GET['username'];
-		$results = mysqli_query($db, "SELECT * FROM users,customer WHERE users.username = '$username' AND customer.username = '$username'");
+		$results = mysqli_query($db, "SELECT * FROM customer");
+	}
 ?>
-<form method="post" action="" >
+<form method="post" action="">
 <table class="table table-dark">
 	<thead>
 	    <tr>
 			<th></th>
 			<th></th>
-			<th><h1><font color="red">LE SPA</font></h1></th>
+			<th><h1><center><font color="red">LE SPA</font></center></h1></th>
 			<th colspan="2"></th>
 		</tr>
 		<tr>
-			<th>FirstName</th>
-			<th>Middle Initial</th>
-			<th>Lastname</th>
-			<th>Address</th>
-			<th>Contact Number</th>
+			<th><center>Customer No</center></th>
+			<th><center>FirstName</center></th>
+			<th><center>Middle Initial</center></th>
+			<th><center>Lastname</center></th>
+			<th><center>Extention</center></th>
+			<th><center>Address</center></th>
+			<th><center>Contact Number</center></th>
 			<th colspan="2">UPDATE</th>
 		</tr>
 	</thead>
 	
 	<?php while ($row = mysqli_fetch_array($results)) { ?>
 		<tr>
-			<td><?php echo $row['firstname']; ?></td>
-			<td><?php echo $row['middle_initial']; ?></td>
-			<td><?php echo $row['lastname']; ?></td>
-			<td><?php echo $row['address']; ?></td>
-			<td><?php echo $row['contact_number']; ?></td>
+			<td><center><?php echo $row['customer_no']; ?></center></td>
+			<td><center><?php echo $row['firstname']; ?></center></td>
+			<td><center><?php echo $row['middle_initial']; ?></center></td>
+			<td><center><?php echo $row['lastname']; ?></center></td>
+			<td><center><?php echo $row['Ext']; ?></center></td>
+			<td><center><?php echo $row['address']; ?></center></td>
+			<td><center><?php echo $row['contact_number']; ?></center></td>
 
 			<td>
-				<a href="edit.php?edit=<?php echo $row['customer_no']; ?>" class="edit_btn" >Edit</a>
+				<a href="customer_edit.php?edit=<?php echo $row['customer_no']; ?>" class="edit_btn" >Edit</a>
 			</td>
 			<td>
-				<a href="server1.php?del=<?php echo $row['customer_no']; ?>" class="del_btn">Delete</a>
+				<a href="customer_server.php?del=<?php echo $row['customer_no']; ?>" class="del_btn">Delete</a>
 			</td>
 		</tr>
 	<?php } 
-	} 
+	
 ?>
 </table>
 	
@@ -116,12 +118,20 @@ include('customer server.php');
 	</div><br>
 	<div class="input-group">
 		<label>Customer Middle Initial :</label>
-		<input type="text" name="middle_initial" required value="<?php echo $middle_initial; ?>">
+		<input type="text" name="middle_initial" value="<?php echo $middle_initial; ?>">
 	</div><br>
 	<div class="input-group">
 		<label>Customer Lastname :</label>
 		<input type="text" name="lastname" required value="<?php echo $lastname; ?>">
-	</div><br>
+		<select name="Ext">
+    	 <option value="">Ext</option>
+         <option value="Jr">Jr</option>
+         <option value="Sr">Sr</option>
+         <option value="II">II</option>
+         <option value="III">III</option>
+        </select><br>
+	</div>
+    </br>
 	<div class="input-group">
 		<label>Customer Address :</label>
 		<input type="text" name="address" required value="<?php echo $address; ?>">
@@ -138,13 +148,12 @@ include('customer server.php');
   	          <b><button class="btn" type="submit" name="update" style="background: #0000FF;" ><font color="white">Save</font></button></b>
   	        </div>
 		<?php else: ?>
-			<b><button class="btn" type="submit" name="save" >Save</button></b>
+			<b><button class="btn" type="submit" name="save">Save</button></b>
 		<?php endif ?>
 			<p class="change_link">
 			  <b><a href="login.php"><font color="red">Logout</font></a></b>
 			</p>
 	</div>
-
 </form>
 </body>
 </html>

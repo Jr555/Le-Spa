@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="index.css">
 <link rel="stylesheet" href="bootstrap-4.0.0-beta.3-dist/css/bootstrap.min.css">
 </head>
-<body bgcolor="red">
+<body>
 <?php
 require('db.php');
 // If form submitted, insert values into the database.
@@ -25,13 +25,14 @@ VALUES ('$username', '".md5($password)."', '$email', '$trn_date')";
         $result = mysqli_query($con,$query);
         if($result){
             echo "<div class='form'>
-<center><h1>You are now registered!</h1>
-<br><h3>Click here to</h3><a href='login.php'><h4><font color='red'><b>Login</b></font></h4></a></div></center>";
+<center><h1><font color='red'>Welcome to Le Spa</font></h1>            
+<center><h1><font color='blue'>You are now registered!</font></h1>
+<br><h3><font color='white'>Click here to</font></h3><a href='login.php'><h4><font color='red'><b>Login</b></font></h4></a></div></center>";
 	}
     }else{
 ?>
 <center><div class="form">
-<h1>Registration</h1>
+<h1><font color="red">Registration</font></h1>
 <form name="registration" action="" method="post">
 <b><div class="input-group">
 <input type="text" name="username" placeholder="Username" required /><br><br>

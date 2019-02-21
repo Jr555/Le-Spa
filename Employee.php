@@ -12,7 +12,7 @@ include('server1.php');
 </head>
 <body style="background: url('Le3.jpg');
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: cover;
     background-position: center; 
     height: 900px;">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -60,33 +60,35 @@ include('server1.php');
 <?php
 	if(isset($_GET['username'])){
 		$username = $_GET['username'];
-		$results = mysqli_query($db, "SELECT * FROM users,employee WHERE users.username = '$username' AND employee.username = '$username'");
+		$results = mysqli_query($db, "SELECT * FROM employee");
 	}
 ?>
-	<form method="post" action="" >
+<form method="post" action="">
 <table class="table table-dark">
 	<thead>
 	    <tr>
 			<th></th>
 			<th></th>
-			<th><h1><font color="red">LE SPA</font></h1></th>
+			<th><h1><font color="red"><center>LE SPA</center></font></h1></th>
 			<th colspan="2"></th>
 		</tr>
 		<tr>
-			<th>FirstName</th>
-			<th>Middle Initial</th>
-			<th>Lastname</th>
-			<th>Extention</th>
+			<th><center>Employee No</center></th>
+			<th><center>FirstName</center></th>
+			<th><center>Middle Initial</center></th>
+			<th><center>Lastname</center></th>
+			<th><center>Extention</center></th>
 			<th colspan="2">UPDATE</th>
 		</tr>
 	</thead>
-	
+
 	<?php while ($row = mysqli_fetch_array($results)) { ?>
 		<tr>
-			<td><?php echo $row['firstname']; ?></td>
-			<td><?php echo $row['middle_initial']; ?></td>
-			<td><?php echo $row['lastname']; ?></td>
-			<td> <?php echo $row['Ext']; ?></td>
+			<td><center><?php echo $row['employee_no']; ?></center></td>
+			<td><center><?php echo $row['firstname']; ?></center></td>
+			<td><center><?php echo $row['middle_initial']; ?></center></td>
+			<td><center><?php echo $row['lastname']; ?></center></td>
+			<td><center><?php echo $row['Ext']; ?></center></td>
 			<td>
 				<a href="edit.php?edit=<?php echo $row['employee_no']; ?>" class="edit employee_btn" >Edit</a>
 			</td>
@@ -96,29 +98,23 @@ include('server1.php');
 		</tr>
 	<?php } 
 	
-?>
+    ?>
 </table>
-	
-
-
-
-
 	<input type="hidden" name="employee_no" value="<?php echo $employee_no; ?>">
-
+    
 	<b><font color="black"><div class="input-group">
 		<label>Employee Firstname :</label>
 		<input type="text" name="firstname" required value="<?php echo $firstname; ?>">
 	</div><br>
 	<div class="input-group">
 		<label>Employee Middle Initial :</label>
-		<input type="text" name="middle_initial" required value="<?php echo $middle_initial; ?>">
+		<input type="text" name="middle_initial" value="<?php echo $middle_initial; ?>">
 	</div><br>
 	<div class="input-group">
 		<label>Employee Lastname :</label>
 		<input type="text" name="lastname" required value="<?php echo $lastname; ?>">
 		<select name="Ext">
     	 <option value="">Ext</option>
-    	 <option value=""></option>
          <option value="Jr">Jr</option>
          <option value="Sr">Sr</option>
          <option value="II">II</option>

@@ -4,9 +4,9 @@
 }
 body {
   font-size: 120%;
-  background: url("le.jpg");
+  background: url('le.jpg');
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   background-position: center; 
 }
 

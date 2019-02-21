@@ -1,5 +1,5 @@
 <?php 
-include('services server.php');
+include('services_server.php');
 
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ include('services server.php');
 </head>
 <body style="background: url('lemas.jpg');
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: cover;
     background-position: center; 
     height: 400px;">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,23 +23,20 @@ include('services server.php');
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="Employee.php">Home <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="Employee.php">Employee</a>	
+        <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a>	
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Customer.php">Customer</a>
+        <a class="nav-link" href="Customer.php?username=<?php echo $_GET['username'];?>">Customer</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Services.php">Service</a>
+        <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
       </li> 
 	  <li class="nav-item">
-        <a class="nav-link" href="Income Reports.php">Income Reports</a>
+        <a class="nav-link" href="IncomeReports.php?username=<?php echo $_GET['username'];?>">Income Reports</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Commission Reports.php">Commission Reports</a>
+        <a class="nav-link" href="CommissionReports.php?username=<?php echo $_GET['username'];?>">Commission Reports</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -48,61 +45,54 @@ include('services server.php');
     </form>
   </div>
 </nav>
-
-	<?php if (isset($_SESSION['message'])): ?>
-  	
-		<div class="msg">
-		
-			<?php 
-				echo $_SESSION['message']; 
-				unset($_SESSION['message']);
-			?>
-		</div>
-	<?php endif ?>
-
 <?php
 	if(isset($_GET['username'])){
 		$username = $_GET['username'];
-		$results = mysqli_query($db, "SELECT * FROM users,services WHERE users.username = '$username' AND services.username = '$username'");
+		$results = mysqli_query($db, "SELECT * FROM service");
+    }
 ?>
-	<form method="post" action="" >
+<form method="post" action="">
 <table class="table table-dark">
 	<thead>
 	    <tr>
-			<th><img src="logo.jpg" width="50" height="50" alt="logo"></th>
+			<th></th>
 			<th></th>
 			<th><center><h1><font color="red">LE SPA</font></h1></center></th>
 			<th colspan="2"></th>
 		</tr>
 		<tr>
-			<th>Description</th>
-			<th>Price</th>
-			<th>Duration</th>
+			<th><center>Service Code</center></th>
+			<th><center>Description</center></th>
+			<th><center>Price</center></th>
+			<th><center>Duration</center></th>
+			<th><center>Commission</center></th>
 			<th colspan="2">UPDATE</th>
 		</tr>
 	</thead>
 	
 	<?php while ($row = mysqli_fetch_array($results)) { ?>
 		<tr>
-			<td><?php echo $row['description']; ?></td>
-			<td><?php echo $row['price']; ?></td>
-			<td><?php echo $row['duration']; ?></td>
+			<td><center><?php echo $row['service_code']; ?></center></td>
+			<td><center><?php echo $row['description']; ?></center></td>
+			<td><center>₱ <?php echo $row['price']; ?></center></td>
+			<td><center><?php echo $row['duration']; ?></center></td>
+			<td><center><?php echo $row['commission']; ?></center></td>
 			<td>
-				<a href="edit.php?edit=<?php echo $row['id']; ?>" class="edit_btn" >Edit</a>
+				<a href="services_edit.php?edit=<?php echo $row['service_code']; ?>" class="edit_btn" >Edit</a>
 			</td>
 			<td>
-				<a href="server1.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
+				<a href="services_server.php?del=<?php echo $row['service_code']; ?>" class="del_btn">Delete</a>
 			</td>
 		</tr>
 	<?php } 
-	} ?>
+?>
 </table>
 	
 
 
 
 
-	<input type="hidden" name="id" value="<?php echo $id; ?>">
+	<input type="hidden" name="service_code" value="<?php echo $service_code; ?>">
 
 	<b><font color="yellow"><div class="input-group">
 	<div class="input-group">
@@ -119,7 +109,7 @@ include('services server.php');
 	</div><br>
     <div class="input-group">
 		<label>Commission :</label>
-		<input type="text" name="commission" required value="<?php echo $commission; ?>">
+		<input type="text" name="commission" value="<?php echo $commission; ?>">
 	</div><br></font><br>
 	<div class="input-group">
 

@@ -2,12 +2,16 @@
 <html>
 <head>
 <meta charset="utf-8">
-<h1><center><font color="red">Welcome to Le Spa</font></center></h1><br>
+<h1><center><b><font color="darkgreen"></font></b></center></h1>
 <title>Login</title>
 <link rel="stylesheet" type="text/css" href="index.css">
 <link rel="stylesheet" href="bootstrap-4.0.0-beta.3-dist/css/bootstrap.min.css">
 </head>
-<body>
+<body style="background: url('le.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+    background-position: center;
+    margin-top: 233px">
 <?php
 require('db.php');
 session_start();
@@ -36,7 +40,7 @@ and password='".md5($password)."'";
     }else{
 ?>
 <center><div class="form">
-<h1>Log In</h1>
+<h1><font color="red">Log In</font></h1>
 <form action="" method="post" name="login">
 <b><div class="input-group">
 <input type="text" name="username" placeholder="Username" required /><br><br>

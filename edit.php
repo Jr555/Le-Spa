@@ -6,13 +6,13 @@ include('server1.php');
 <html>
 <head>
 	
-	<title>Welcome</title>
+	<title>Employee</title>
 	<link rel="stylesheet" type="text/css" href="new.css">
 	<link rel="stylesheet" href="bootstrap-4.0.0-beta.3-dist/css/bootstrap.min.css">
 </head>
 <body style="background: url('Le3.jpg');
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: cover;
     background-position: center; 
     height: 900px;">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,23 +23,20 @@ include('server1.php');
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="login.php">Home <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="Employee.php">Employee</a>
+        <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Customer.php">Customer</a>
+        <a class="nav-link" href="Customer.php?username=<?php echo $_GET['username'];?>">Customer</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Services.php">Service</a>
+        <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
       </li> 
 	  <li class="nav-item">
-        <a class="nav-link" href="Income Reports.php">Income Reports</a>
+        <a class="nav-link" href="Income Reports.php?username=<?php echo $_GET['username'];?>">Income Reports</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Commission Reports.php">Commission Reports</a>
+        <a class="nav-link" href="Commission Reports.php?username=<?php echo $_GET['username'];?>">Commission Reports</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -50,31 +47,35 @@ include('server1.php');
 </nav>
 	<?php
 	if(isset($_GET['edit'])){
-		$id = $_GET['edit'];
+		$employee_no = $_GET['edit'];
 		$result1 = mysqli_query($db, "SELECT * FROM employee WHERE employee_no = '$employee_no'");
 ?>
-	<form method="post" action="" >
+<form method="post" action="" >
 <table class="table table-dark">
 	<thead>
 	    <tr>
 			<th></th>
 			<th></th>
-			<th><h1><font color="red">LE SPA</font></h1></th>
+			<th><h1><font color="red"><center>LE SPA</center></font></h1></th>
 			<th colspan="2"></th>
 		</tr>
 		<tr>
-			<th>FirstName</th>
-			<th>Middle Initial</th>
-			<th>Lastname</th>
+			<th><center>Employee No</center></th>
+			<th><center>FirstName</center></th>
+			<th><center>Middle Initial</center></th>
+			<th><center>Lastname</center></th>
+			<th><center>Extention</center></th>
 			<th colspan="2">UPDATE</th>
 		</tr>
 	</thead>
-	
+
 	<?php while ($row = mysqli_fetch_array($results)) { ?>
 		<tr>
-			<td><?php echo $row['firstname']; ?></td>
-			<td><?php echo $row['middle_initial']; ?></td>
-			<td><?php echo $row['lastname']; ?></td>
+			<td><center><?php echo $row['employee_no']; ?></center></td>
+			<td><center><?php echo $row['firstname']; ?></center></td>
+			<td><center><?php echo $row['middle_initial']; ?></center></td>
+			<td><center><?php echo $row['lastname']; ?></center></td>
+			<td><center><?php echo $row['Ext']; ?></center></td>
 			<td>
 				<a href="edit.php?edit=<?php echo $row['employee_no']; ?>" class="edit_btn" >Edit</a>
 			</td>
@@ -91,19 +92,27 @@ include('server1.php');
 
 
 	<input type="hidden" name="employee_no" value="<?php echo $employee_no; ?>">
+	<input type="hidden" name="username" value="<?php echo $_GET['username']; ?>">
 
 	<b><font color="black"><div class="input-group">
 		<label>Employee Firstname: </label>
-		<input type="text" name="firstname" value="<?php echo $firstname; ?>">
+		<input type="text" name="firstname" required value="<?php echo $firstname; ?>">
 	</div><br>
 	<div class="input-group">
 		<label>Employee Middle Initial: </label>
 		<input type="text" name="middle_initial" value="<?php echo $middle_initial; ?>">
 	</div><br>
 	<div class="input-group">
-		<label> Employee Lastname: </label>
-		<input type="text" name="lastname" value="<?php echo $lastname; ?>">
-	</div></font><br>
+		<label>Employee Lastname :</label>
+		<input type="text" name="lastname" required value="<?php echo $lastname; ?>">
+		<select name="Ext">
+    	 <option value="">Ext</option>
+         <option value="Jr">Jr</option>
+         <option value="Sr">Sr</option>
+         <option value="II">II</option>
+         <option value="III">III</option>
+        </select>
+	</div>
 	<div class="input-group">
 
 		<?php if ($update == true): ?>
