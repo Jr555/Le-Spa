@@ -1,15 +1,38 @@
+<?php 
+include('servicesrecords_server.php');
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Service</title>
-	<link rel="stylesheet" type="text/css" href="service_records.css">
+	<title>Service Records</title>
 	<link rel="stylesheet" href="bootstrap-4.0.0-beta.3-dist/css/bootstrap.min.css">
 </head>
-<body style="background: url('logos.png');
-	background-repeat: no-repeat;
-	background-size: cover;
-    background-position: center; 
-    height: 800px;">
+<body>
+<style>
+body {
+  background: url('Logos.png');
+}
+form, .content {
+  width: 30%;
+  margin: 0px auto;
+  padding: 20px;
+  border: 3px solid #000000;
+  border-radius: 30px 30px 30px 30px;
+  color: black;
+}
+input[type=text] {
+	border: 2px solid #00008B #0000FF;
+	border-radius: 5px 5px 5px 5px;
+}
+select {
+	border: 2px solid #00008B;
+	border-radius: 5px 5px 5px 5px;
+}
+button {
+	background-color: #0000FF;
+}
+</style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <img src="lep.png" width="50" height="50" alt="logo">
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,10 +56,13 @@
 	  <li class="nav-item">
         <a class="nav-link" href="CommissionReports.php?username=<?php echo $_GET['username'];?>">Commission Reports</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ServiceRecords.php?username=<?php echo $_GET['username'];?>">Service Records</a>
+      </li>
     </ul>
     <div class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <img src="unnamed.png" width="50" height="50" alt="logo">
+      <img src="ustp.png" width="50" height="50" alt="logo">
     </div>
   </div>
 </nav>
@@ -50,7 +76,6 @@
 	</tr>
   </thead>
   <tbody class="text-center">
-
 	<tr>
 		<th></th>
 		<th></th>
@@ -68,47 +93,71 @@
   	</tr>
   </tbody>
 </table>
-<center>
-</center>
+
 <form>
   <b>
-  <div class="form-group">
+  <div class="col-md-13 mb-13">
     <label>Customer</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Customer Name">
-    <select name="">
-    	    <option value="">Select Customer</option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+    <select class="form-control">
+    	<?php 
+        include('customer_server.php');
+
+        ?>
+    	<?php
+    		$sql = mysqli_query($db,"SELECT * FROM customer");
+    		while ($row = mysqli_fetch_array($results)) {
+
+    	?>
+    	<option value="<?php echo $row['customer_no']; ?>"><?php echo $row['firstname']," ",$row['middle_initial']," ",$row['lastname']," ",$row['Ext'] ?></option>
+    	<?php
+    		}
+
+    	 ?>
     </select>
   </div>
-  <div class="form-group">
+  <div class="col-md-13 mb-13">
     <label>Services</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Service">
-    <select name="">
-    	    <option value="">Services</option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+    <select class="form-control">
+    	<?php 
+        include('services_server.php');
+
+        ?>
+    	<?php
+    		$sql = mysqli_query($db,"SELECT * FROM service");
+    		while ($row = mysqli_fetch_array($results)) {
+
+    	?>
+    	<option value="<?php echo $row['service_code']; ?>"><?php echo $row['description'] ?></option>
+    	<?php
+    		}
+
+    	 ?>
     </select>
   </div>
-  <div class="form-group">
+  <div class="col-md-13 mb-13">
     <label>Employee</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Employee Name">
-    <select name="">
-    	    <option value="">Select Employee</option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+    <select class="form-control">
+    	<?php 
+        include('server1.php');
+        
+        ?>
+    	<?php
+    		$sql = mysqli_query($db,"SELECT * FROM employee");
+    		while ($row = mysqli_fetch_array($results)) {
+
+    	?>
+    	<option value="<?php echo $row['employee_no']; ?>"><?php echo $row['firstname']," ",$row['middle_initial']," ",$row['lastname']," ",$row['Ext'] ?></option>
+    	<?php
+    		}
+
+    	 ?>
     </select>
-  </div>
+  </div><br>
 </b>
 <center>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn"><font color="black"><b>Submit</b></font></button>
 </center>
 </form>
+</center>
 </body>
 </html>

@@ -4,14 +4,87 @@
 <meta charset="utf-8">
 <h1><center><b><font color="darkgreen"></font></b></center></h1>
 <title>Login</title>
-<link rel="stylesheet" type="text/css" href="index.css">
 <link rel="stylesheet" href="bootstrap-4.0.0-beta.3-dist/css/bootstrap.min.css">
 </head>
-<body style="background: url('le.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-    background-position: center;
-    margin-top: 233px">
+<body>
+<style>
+	* {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  font-size: 120%;
+  background: url('le.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: height:50% center; 
+}
+
+.header {
+  width: 30%;
+  margin: 50px auto 0px;
+  color: white;
+  background: #000080;
+  text-align: center;
+  border: 1px solid #FFFFFF;
+  border-bottom: none;
+  border-radius: 10px 10px 0px 0px;
+  padding: 20px;
+}
+form, .content {
+  width: 30%;
+  margin: 0px auto;
+  padding: 20px;
+  border: 1px solid #C0C0C0;
+  border-radius: 10px 10px 10px 10px;
+  color: firebrick;
+  margin-top: 3%;
+}
+.input-group {
+  margin: 10px 0px 10px 0px;
+}
+.input-group label {
+  display: block;
+  text-align: left;
+  margin: 3px;
+}
+.input-group input {
+  height: 30px;
+  width: 93%;
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+.btn {
+  width: 318px;
+  padding: 10px;
+  font-size: 15px;
+  color: white;
+  background: #000080;
+  border: none;
+  border-radius: 5px;
+}
+.button {
+  width: 100px;
+}
+.error {
+  width: 92%; 
+  margin: 0px auto; 
+  padding: 10px; 
+  border: 1px solid #a94442; 
+  color: #a94442; 
+  background: #f2dede; 
+  border-radius: 5px; 
+  text-align: left;
+}
+.success {
+  color: #3c763d; 
+  background: #dff0d8; 
+  border: 1px solid #3c763d;
+  margin-bottom: 20px;
+}
+</style>
 <?php
 require('db.php');
 session_start();
@@ -39,7 +112,7 @@ and password='".md5($password)."'";
 	}
     }else{
 ?>
-<center><div class="form">
+<center><div class="form"><br><br><br>
 <h1><font color="red">Log In</font></h1>
 <form action="" method="post" name="login">
 <b><div class="input-group">
@@ -52,7 +125,7 @@ and password='".md5($password)."'";
 <button type="submit" class="btn" name="reg_user">Log In</button>
 </div></b></center>
 </form>
-<p><h4><b>Not registered yet? <a href='registration.php'><font color="white">Register</font></b></h4></a></p>
+<p><h4><b>Not registered yet? <a href='registration.php'><font color="black">Register</font></b></h4></a></p>
 </div></center>
 <?php } ?>
 </body>

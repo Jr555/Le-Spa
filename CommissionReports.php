@@ -26,23 +26,26 @@ include('server1.php');
       <li class="nav-item">
         <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a>	
       </li>
-	  <li class="nav-item">
+	    <li class="nav-item">
         <a class="nav-link" href="Customer.php?username=<?php echo $_GET['username'];?>">Customer</a>
       </li>
-	  <li class="nav-item">
+	    <li class="nav-item">
         <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
       </li> 
-	  <li class="nav-item">
+	    <li class="nav-item">
         <a class="nav-link" href="IncomeReports.php?username=<?php echo $_GET['username'];?>">Income Reports</a>
       </li>
-	  <li class="nav-item">
+	    <li class="nav-item">
         <a class="nav-link" href="CommissionReports.php?username=<?php echo $_GET['username'];?>">Commission Reports</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ServiceRecords.php?username=<?php echo $_GET['username'];?>">Service Records</a>
+      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="form-inline my-2 my-lg-0">
+      <img src="unnamed.png" width="50" height="50" alt="logo">
+      <img src="ustp.png" width="50" height="50" alt="logo">
+    </div>
   </div>
 </nav>
 

@@ -38,11 +38,14 @@ include('customer_server.php');
 	  <li class="nav-item">
         <a class="nav-link" href="Commission Reports.php?username=<?php echo $_GET['username'];?>">Commission Reports</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ServiceRecords.php?username=<?php echo $_GET['username'];?>">Service Records</a>
+      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="form-inline my-2 my-lg-0">
+      <img src="unnamed.png" width="50" height="50" alt="logo">
+      <img src="ustp.png" width="50" height="50" alt="logo">
+    </div>
   </div>
 </nav>
 	<?php

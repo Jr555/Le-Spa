@@ -7,16 +7,43 @@ include('server1.php');
 <head>
 	
 	<title>Employee</title>
-	<link rel="stylesheet" type="text/css" href="welcome.css">
 	<link rel="stylesheet" href="bootstrap-4.0.0-beta.3-dist/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </head>
-<body style="background: url('Le3.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-    background-position: center; 
-    height: 900px;">
+<body>
+<style>
+body {
+  background: url('Le3.jpg');
+}
+form, .content {
+  background-color: white;
+  width: 35%;
+  margin: 0px auto;
+  padding: 20px;
+  border: 3px solid #000000;
+  border-radius: 30px 30px 30px 30px;
+  color: black;
+}
+input[type=text] {
+	border: 2px solid #00008B;
+	border-radius: 5px 5px 5px 5px;
+}
+select {
+	border: 2px solid #00008B;
+	border-radius: 5px 5px 5px 5px;
+}
+button {
+	background-color: #0000FF;
+}
+img, .logo {
+	border-radius: 30px 30px 30px 30px;
+}
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-   <img src="lep.png" width="50" height="50" alt="logo">
+   <img src="lep.png" width="80" height="50" >
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="        navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
    </button>
@@ -38,11 +65,37 @@ include('server1.php');
 	  <li class="nav-item">
         <a class="nav-link" href="CommissionReports.php?username=<?php echo $_GET['username'];?>">Commission Reports</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ServiceRecords.php?username=<?php echo $_GET['username'];?>">Service Records</a>
+      </li><br>
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+         <font color="black"><b>ADD EMPLOYEE </b></font><img src="add.png" width="30" height="30" alt="logo">
+      </button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="form-inline my-2 my-lg-0">
+      <img src="unnamed.png" width="50" height="50" alt="logo">
+      <img src="ustp.png" width="50" height="50" alt="logo">
+    </div>
    </div>
 </nav>
 
@@ -63,7 +116,7 @@ include('server1.php');
 		$results = mysqli_query($db, "SELECT * FROM employee");
 	}
 ?>
-<form method="post" action="">
+<form method="post" action="" >
 <table class="table table-dark">
 	<thead>
 	    <tr>
@@ -100,6 +153,7 @@ include('server1.php');
 	
     ?>
 </table>
+<form>
 	<input type="hidden" name="employee_no" value="<?php echo $employee_no; ?>">
     
 	<b><font color="black"><div class="input-group">
@@ -127,16 +181,17 @@ include('server1.php');
 		<?php if ($update == true): ?>
 		
 			<div class="input-group">
-  	          <b><button class="btn" type="submit" name="update" style="background: #0000FF;" ><font color="white">Save</font></button></b>
+  	          <button class="btn" type="submit" name="update" style="background: #0000FF;" ><font color="white"><b>Save</b></font></button>
   	        </div>
 		<?php else: ?>
-			<b><button class="btn" type="submit" name="save" >Save</button></b>
+			<button class="btn" type="submit" name="save"><b>Save</b></button>
 		<?php endif ?>
 			<p class="change_link">
-			  <b><a href="login.php"><font color="red">Logout</font></a></b>
+			  <a href="login.php"><font color="red"><b>Logout</b></font></a>
 			</p>
 	</div>
-
+</b>
+</form>
 </form>
 </body>
 </html>

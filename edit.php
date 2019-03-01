@@ -7,21 +7,45 @@ include('server1.php');
 <head>
 	
 	<title>Employee</title>
-	<link rel="stylesheet" type="text/css" href="new.css">
 	<link rel="stylesheet" href="bootstrap-4.0.0-beta.3-dist/css/bootstrap.min.css">
 </head>
-<body style="background: url('Le3.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-    background-position: center; 
-    height: 900px;">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<img src="lep.png" width="50" height="50" alt="logo">
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-</button>
+<body>
+<style>
+body {
+  background: url('Le3.jpg');
+}
+form, .content {
+  background-color: white;
+  width: 35%;
+  margin: 0px auto;
+  padding: 20px;
+  border: 3px solid #000000;
+  border-radius: 30px 30px 30px 30px;
+  color: black;
+}
+input[type=text] {
+	border: 2px solid #00008B;
+	border-radius: 5px 5px 5px 5px;
+}
+select {
+	border: 2px solid #00008B;
+	border-radius: 5px 5px 5px 5px;
+}
+button {
+	background-color: #0000FF;
+}
+img, .logo {
+	border-radius: 30px 30px 30px 30px;
+}
+</style>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+   <img src="lep.png" width="80" height="50" >
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="        navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+   </button>
+
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a>
@@ -33,17 +57,20 @@ include('server1.php');
         <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
       </li> 
 	  <li class="nav-item">
-        <a class="nav-link" href="Income Reports.php?username=<?php echo $_GET['username'];?>">Income Reports</a>
+        <a class="nav-link" href="IncomeReports.php?username=<?php echo $_GET['username'];?>">Income Reports</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Commission Reports.php?username=<?php echo $_GET['username'];?>">Commission Reports</a>
+        <a class="nav-link" href="CommissionReports.php?username=<?php echo $_GET['username'];?>">Commission Reports</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ServiceRecords.php?username=<?php echo $_GET['username'];?>">Service Records</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
+    <div class="form-inline my-2 my-lg-0">
+      <img src="unnamed.png" width="50" height="50" alt="logo">
+      <img src="ustp.png" width="50" height="50" alt="logo">
+    </div>
+   </div>
 </nav>
 	<?php
 	if(isset($_GET['edit'])){
@@ -95,15 +122,15 @@ include('server1.php');
 	<input type="hidden" name="username" value="<?php echo $_GET['username']; ?>">
 
 	<b><font color="black"><div class="input-group">
-		<label>Employee Firstname: </label>
+		<label>Employee Firstname </label>
 		<input type="text" name="firstname" required value="<?php echo $firstname; ?>">
 	</div><br>
 	<div class="input-group">
-		<label>Employee Middle Initial: </label>
+		<label>Employee Middle Initial </label>
 		<input type="text" name="middle_initial" value="<?php echo $middle_initial; ?>">
 	</div><br>
 	<div class="input-group">
-		<label>Employee Lastname :</label>
+		<label>Employee Lastname </label>
 		<input type="text" name="lastname" required value="<?php echo $lastname; ?>">
 		<select name="Ext">
     	 <option value="">Ext</option>
@@ -118,13 +145,13 @@ include('server1.php');
 		<?php if ($update == true): ?>
 		
 			<div class="input-group">
-  	          <b><button class="btn" type="submit" name="update" style="background: #0000FF;" ><font color="white">Save</font></button></b>
+  	          <b><button class="btn" type="submit" name="update" style="background: #0000FF;" ><font color="white"><b>Save</b></font></button></b>
   	        </div>
 		<?php else: ?>
-			<b><button class="btn" type="submit" name="update" >Save</button></b>
+			<b><button class="btn" type="submit" name="update"><b>Save</b></button></b>
 		<?php endif ?>
 			<p class="change_link">
-			  <b><a href="login.php"><font color="red">Logout</font></a></b>
+			  <a href="login.php"><font color="red"><b>Logout</b></font></a>
 			</p>
 	</div>
 
