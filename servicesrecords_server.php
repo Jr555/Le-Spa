@@ -3,81 +3,65 @@
 	$db = mysqli_connect('localhost', 'root', '', 'leSpa');
 
 	// initialize variables
-	$firstname = "";
-	$middle_initial= "";
-	$lastname = "";
-	$address = "";
-	$contact_number = "";
-	$customer_no = 0;
+	$id = "";
+	$service_code= "";
+	$employee_no = "";
 	$update = false;
 
-	if (isset($_POST['save'],$_GET['username'])) {
-		$username = $_GET['username'];
-		$firstname = $_POST['firstname'];
-		$middle_initial = $_POST['middle_initial'];
-		$lastname = $_POST['lastname'];
-		$Ext = $_POST['Ext'];
-		$address = $_POST['address'];
-		$contact_number = $_POST['contact_number'];
+	if (isset($_GET['save'])) {
+		$username = $_SESSION['username'];
+		$service_code = $_GET['service_code'];
+		$employee_no = $_GET['employee_no'];
 
-		mysqli_query($db, "INSERT INTO customer (firstname, middle_initial, lastname, Ext, address, contact_number) VALUES ('$firstname', '$middle_initial', '$lastname', '$Ext', '$address', '$contact_number')"); 
+		$query =  "INSERT INTO service_records (service_code, employee_no) VALUES ($service_code, '$employee_no')";
+		mysqli_query($db,$query); 
 		$_SESSION['message']; 
-		header('location: Customer.php?username='.$username);
+		header('location: ServiceRecords.php?username='.$username);
 	}
 
-
-	if (isset($_POST['update'])) {
-		$customer_no = $_POST['customer_no'];
-		$firstname = $_POST['firstname'];
-		$middle_initial = $_POST['middle_initial'];
-		$lastname = $_POST['lastname'];
-		$Ext = $_POST['Ext'];
-		$address = $_POST['address'];
-		$contact_number = $_POST['contact_number'];
-		$query = "SELECT customer_no FROM customer WHERE customer_no = $customer_no";
+    if (isset($_POST['update'])) {
+		$id = $_POST['id'];
+		$service_code = $_POST['service_code'];
+		$employee_no = $_POST['employee_no'];
+		$query = "SELECT id FROM service_records WHERE id = $id";
 		$results = mysqli_query($db,$query);
 		if(mysqli_num_rows($results)){
 			while ($row=mysqli_fetch_array($results)) {
-				mysqli_query($db, "UPDATE customer SET firstname='$firstname', middle_initial='$middle_initial' ,lastname='$lastname' ,Ext='$Ext' ,address='$address' ,contact_number='$contact_number' WHERE customer_no=$customer_no" );
+				mysqli_query($db, "UPDATE service_records SET id='$id', service_code='$service_code' ,employee_no='$employee_no' WHERE id=$id" );
 				$_SESSION['message']; 
-				header('location: Customer.php?username='.$row['username']);
+				header('location: ServiceRecords.php?username='.$row['username']);
 			}
 		}
 
 	}
 
 if (isset($_GET['del'])) {
-	$customer_no = $_GET['del'];
-	mysqli_query($db, "DELETE FROM customer WHERE customer_no=$customer_no");
+	$id = $_GET['del'];
+	mysqli_query($db, "DELETE FROM service_records WHERE id=$id");
 	$_SESSION['message']; 
-	header('location: Customer.php?username='.$row['username']);
+	header('location: ServiceRecords.php?username='.$row['username']);
 }
 
-
-	$results = mysqli_query($db, "SELECT * FROM customer");
-
+    
+	
 
 	//Add button
 	if(isset($_POST['back'])){
-		header("location: Customer.php?username=".$row['username']);
+		header("location: ServiceRecord.php?username=".$row['username']);
 		
 	}
 	
 	// ...	
 		if (isset($_GET['edit'])) {
-		$customer_no = $_GET['edit'];
+		$id = $_GET['edit'];
 		$update = true;
-		$record = mysqli_query($db, "SELECT * FROM customer WHERE customer_no=$customer_no");
+		$record = mysqli_query($db, "SELECT * FROM service_records WHERE id=$id");
 
 		if (mysqli_num_rows($record) == 1) {
 			while ($n = mysqli_fetch_array($record)){
-				$customer_no = $n['customer_no'];
-				$firstname = $n['firstname'];
-				$middle_initial = $n['middle_initial'];
-				$lastname = $n['lastname'];
-				$Ext = $n['Ext'];
-				$address = $n['address'];
-				$contact_number = $n['contact_number'];
+				$id = $n['id'];
+				$service_code = $n['service_code'];
+				$employee_no = $n['employee_no'];
 			}
 		}
 

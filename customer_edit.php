@@ -10,11 +10,26 @@ include('customer_server.php');
 	<link rel="stylesheet" type="text/css" href="new.css">
 	<link rel="stylesheet" href="bootstrap-4.0.0-beta.3-dist/css/bootstrap.min.css">
 </head>
-<body style="background: url('co.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-    background-position: center; 
-    height: 400px;">
+<body>
+<style>
+body {
+    background: url('co.jpg');
+}
+input[type=text] {
+	border: 2px solid #000000;
+	border-radius: 5px 5px 5px 5px;
+}
+select {
+	border: 2px solid #00008B;
+	border-radius: 5px 5px 5px 5px;
+}
+button {
+	background-color: #0000FF;
+}
+img, .logo {
+	border-radius: 30px 30px 30px 30px;
+}
+</style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <img src="lep.png" width="50" height="50" alt="logo">
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,19 +47,22 @@ include('customer_server.php');
 	  <li class="nav-item">
         <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
       </li> 
-	  <li class="nav-item">
-        <a class="nav-link" href="Income Reports.php?username=<?php echo $_GET['username'];?>">Income Reports</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="Commission Reports.php?username=<?php echo $_GET['username'];?>">Commission Reports</a>
+      <li class="nav-item">
+        <a class="nav-link" href="CustomerRecords.php?username=<?php echo $_GET['username'];?>">Customer Records</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="ServiceRecords.php?username=<?php echo $_GET['username'];?>">Service Records</a>
       </li>
     </ul>
     <div class="form-inline my-2 my-lg-0">
-      <img src="unnamed.png" width="50" height="50" alt="logo">
-      <img src="ustp.png" width="50" height="50" alt="logo">
+      <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Bachelor of Science in 
+         Information Technology">
+         <img src="unnamed.png" width="50" height="50" alt="logo">
+      </button>
+      <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="University of Science and Technology of Southern Philippines">
+         <img src="ustp.png" width="50" height="50" alt="logo">
+      </button>
+      <b><a href="Logout.php"><font color="red">Logout</font></a></b>
     </div>
   </div>
 </nav>
@@ -134,13 +152,13 @@ include('customer_server.php');
 		<?php if ($update == true): ?>
 		
 			<div class="input-group">
-  	          <b><button class="btn" type="submit" name="update" style="background: #0000FF;" ><font color="white">Save</font></button></b>
+  	          <button class="btn" type="submit" name="update" style="background: #0000FF;" ><font color="white"><b>Update</b></font></button>
   	        </div>
 		<?php else: ?>
-			<b><button class="btn" type="submit" name="save" >Save</button></b>
+			  <button class="btn" type="submit" name="save" ><b>Save</b></button>
 		<?php endif ?>
 			<p class="change_link">
-			  <b><a href="login.php"><font color="red">Logout</font></a></b>
+
 			</p>
 	</div>
 

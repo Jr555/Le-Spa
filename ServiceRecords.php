@@ -1,12 +1,12 @@
 <?php 
 include('servicesrecords_server.php');
-
+$results = mysqli_query($db, "SELECT * FROM service_records,service,employee WHERE service_records.service_code = service.service_code AND service_records.employee_no = employee.employee_no");
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Service Records</title>
-	<link rel="stylesheet" href="bootstrap-4.0.0-beta.3-dist/css/bootstrap.min.css">
+  <title>Services Records</title>
+  <link rel="stylesheet" href="bootstrap-4.0.0-beta.3-dist/css/bootstrap.min.css">
 </head>
 <body>
 <style>
@@ -22,15 +22,26 @@ form, .content {
   color: black;
 }
 input[type=text] {
-	border: 2px solid #00008B #0000FF;
-	border-radius: 5px 5px 5px 5px;
+  border: 2px solid #00008B #0000FF;
+  border-radius: 5px 5px 5px 5px;
+  width: 100%;
+  height: 50%;
+}
+input[type=date] {
+  border: 2px solid #00008B #0000FF;
+  border-radius: 5px 5px 5px 5px;
+  width: 100%;
+  height: 50%;
 }
 select {
-	border: 2px solid #00008B;
-	border-radius: 5px 5px 5px 5px;
+  border: 2px solid #00008B;
+  border-radius: 5px 5px 5px 5px;
 }
 button {
-	background-color: #0000FF;
+  background-color: #0000FF;
+}
+img, .logo {
+  border-radius: 30px 30px 30px 30px;
 }
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -42,82 +53,70 @@ button {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a>	
+        <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a> 
       </li>
-	  <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="Customer.php?username=<?php echo $_GET['username'];?>">Customer</a>
       </li>
-	  <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
       </li> 
-	  <li class="nav-item">
-        <a class="nav-link" href="IncomeReports.php?username=<?php echo $_GET['username'];?>">Income Reports</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="CommissionReports.php?username=<?php echo $_GET['username'];?>">Commission Reports</a>
-      </li>
-      <li class="nav-item">
+    <li class="nav-item">
+        <a class="nav-link" href="CustomerRecords.php?username=<?php echo $_GET['username'];?>">Customer Records</a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="ServiceRecords.php?username=<?php echo $_GET['username'];?>">Service Records</a>
-      </li>
+    </li>
     </ul>
     <div class="form-inline my-2 my-lg-0">
-      <img src="unnamed.png" width="50" height="50" alt="logo">
-      <img src="ustp.png" width="50" height="50" alt="logo">
+      <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Bachelor of Science in 
+         Information Technology">
+         <img src="unnamed.png" width="50" height="50" alt="logo">
+      </button>
+      <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="University of Science and Technology of Southern Philippines">
+         <img src="ustp.png" width="50" height="50" alt="logo">
+      </button>
+       <b><a href="Logout.php"><font color="red">Logout</font></a></b>
     </div>
   </div>
 </nav>
 <table class="table table-hover table-stripped">
   <thead class="thead-dark">
-  	<tr><h1><center><font color="red">Service Records</font></center></h1></tr>
+    <tr><h1><center><font color="red">Service Records</font></center></h1></tr>
     <tr>
-      <th scope="col"><center>CUSTOMER</center></th>
-	   <th scope="col"><center>SERVICES</center></th>
-      <th scope="col"><center>EMPLOYEE</center></th>
-	</tr>
+      <th scope="col"><center>ID</center></th>
+      <th scope="col"><center>Service Name</center></th>
+      <th scope="col"><center>Employee Name</center></th>
+      <th scope="col"><center>Price</center></th>
+      <th scope="col"><center>Commission</center></th>
+      <th colspan="2">UPDATE</th>
+    </tr>
   </thead>
-  <tbody class="text-center">
-	<tr>
-		<th></th>
-		<th></th>
-		<th></th>
-  	</tr>
-  	<tr>
-		<th></th>
-	    <th></th>
-		<th></th>
-  	</tr>
-  	<tr>
-		<th></th>
-		<th></th>
-		<th></th>
-  	</tr>
-  </tbody>
+  <?php while ($row = mysqli_fetch_array($results)) { ?>
+    <tr>
+      <td><center><?php echo $row['id']; ?></center></td>
+      <td><center><?php echo $row['description']; ?></center></td>
+      <td><center><?php echo $row['firstname']."&nbsp".$row['middle_initial'].".&nbsp".$row['lastname']."&nbsp".$row['Ext']; ?></center></td>
+      <td><center><?php echo $row['price']; ?></center></td>
+      <td><center><?php echo $row['commission']; ?></center></td>
+      <td> 
+        <a href="servicesrecords_edit.php?edit=<?php echo $row['id']; ?>" class="edit_btn">Edit</a>
+      </td>
+      <td>
+        <a href="servicesrecords_server.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
+      </td>
+    </tr>
+  <?php } 
+  
+    ?>
 </table>
 
-<form>
+<form action="" method="GET">
   <b>
   <div class="col-md-13 mb-13">
-    <label>Customer</label>
-    <select class="form-control">
-    	<?php 
-        include('customer_server.php');
-
-        ?>
-    	<?php
-    		$sql = mysqli_query($db,"SELECT * FROM customer");
-    		while ($row = mysqli_fetch_array($results)) {
-
-    	?>
-    	<option value="<?php echo $row['customer_no']; ?>"><?php echo $row['firstname']," ",$row['middle_initial']," ",$row['lastname']," ",$row['Ext'] ?></option>
-    	<?php
-    		}
-
-    	 ?>
-    </select>
-  </div>
-  <div class="col-md-13 mb-13">
-    <label>Services</label>
-    <select class="form-control">
+    <label>Service Name</label>
+    <select class="form-control" name="service_code">
+    	<option value=""></option>
     	<?php 
         include('services_server.php');
 
@@ -127,7 +126,7 @@ button {
     		while ($row = mysqli_fetch_array($results)) {
 
     	?>
-    	<option value="<?php echo $row['service_code']; ?>"><?php echo $row['description'] ?></option>
+    	<option value="<?php echo $row['service_code']; ?>"><?php echo $row['description']." ₱". $row['price']." (".$row['commission'].")" ?></option>
     	<?php
     		}
 
@@ -135,8 +134,9 @@ button {
     </select>
   </div>
   <div class="col-md-13 mb-13">
-    <label>Employee</label>
-    <select class="form-control">
+    <label>Employee Name</label>
+    <select class="form-control" name="employee_no">
+    	<option value=""></option>
     	<?php 
         include('server1.php');
         
@@ -146,7 +146,7 @@ button {
     		while ($row = mysqli_fetch_array($results)) {
 
     	?>
-    	<option value="<?php echo $row['employee_no']; ?>"><?php echo $row['firstname']," ",$row['middle_initial']," ",$row['lastname']," ",$row['Ext'] ?></option>
+    	<option value="<?php echo $row['employee_no']; ?>"><?php echo $row['firstname']." ".$row['middle_initial']." ".$row['lastname']." ".$row['Ext'] ?></option>
     	<?php
     		}
 
@@ -154,9 +154,20 @@ button {
     </select>
   </div><br>
 </b>
-<center>
-  <button type="submit" class="btn"><font color="black"><b>Submit</b></font></button>
-</center>
+<div class="input-group">
+
+    <?php if ($update == true): ?>
+    
+      <div class="input-group">
+              <button class="btn" type="submit" name="update" style="background: #0000FF;" ><font color="white"><b>Update</b></font></button>
+            </div>
+    <?php else: ?>
+              <button class="btn" type="submit" name="save"><b>Save</b></button>
+    <?php endif ?>
+      <p class="change_link">
+       
+      </p>
+  </div>
 </form>
 </center>
 </body>
