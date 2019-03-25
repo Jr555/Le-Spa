@@ -14,10 +14,6 @@ include('services_server.php');
 <style>
 body {
     background: url('lemas.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-    background-position: center; 
-    height: 400px;
 }
 input[type=text] {
 	border: 2px solid #000000;

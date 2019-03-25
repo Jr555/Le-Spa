@@ -14,10 +14,6 @@ include('customer_server.php');
 <style>
 body {
     background: url('co.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-    background-position: center; 
-    height: 400px;
 }
 input[type=text] {
 	border: 2px solid #000000;

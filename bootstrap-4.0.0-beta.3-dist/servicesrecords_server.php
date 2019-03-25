@@ -19,23 +19,19 @@
 		header('location: ServiceRecords.php?username='.$username);
 	}
 
-
-	if (isset($_POST['update'])) {
+    if (isset($_POST['update'])) {
 		$id = $_POST['id'];
 		$service_code = $_POST['service_code'];
 		$employee_no = $_POST['employee_no'];
-		$query = "SELECT id FROM service_records WHERE id = '$id'";
+		$query = "SELECT id FROM service_records WHERE id = $id";
 		$results = mysqli_query($db,$query);
 		if(mysqli_num_rows($results)){
 			while ($row=mysqli_fetch_array($results)) {
-				mysqli_query($db, "UPDATE service_records SET id='$id', service_code='$service_code' ,employee_no='$employee_no' WHERE id='$id'" );
+				mysqli_query($db, "UPDATE service_records SET id='$id', service_code='$service_code' ,employee_no='$employee_no' WHERE id=$id" );
 				$_SESSION['message']; 
 				header('location: ServiceRecords.php?username='.$row['username']);
 			}
-		}else{
-		    echo "error";
 		}
-		
 
 	}
 

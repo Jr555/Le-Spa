@@ -87,7 +87,7 @@ img, .logo {
       <th scope="col"><center>ID</center></th>
       <th scope="col"><center>Customer Name</center></th>
       <th scope="col"><center>Date</center></th>
-      <th colspan="2">UPDATE</th>
+      <th scope="col">UPDATE</th>
     </tr>
   </thead>
   <?php while ($row = mysqli_fetch_array($results)) { ?>
@@ -95,9 +95,6 @@ img, .logo {
       <td><center><?php echo $row['id']; ?></center></td>
       <td><center><?php echo $row['customer_no'] ?></center></td>
       <td><center><?php echo $row['date']; ?></center></td>
-      <td>
-        <a href="customerrecords_edit.php?edit=<?php echo $row['id']; ?>" class="edit_btn">Edit</a>
-      </td>
       <td>
         <a href="customerrecords_server.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
       </td>

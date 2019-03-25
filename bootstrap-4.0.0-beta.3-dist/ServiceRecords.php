@@ -87,6 +87,8 @@ img, .logo {
       <th scope="col"><center>ID</center></th>
       <th scope="col"><center>Service Name</center></th>
       <th scope="col"><center>Employee Name</center></th>
+      <th scope="col"><center>Price</center></th>
+      <th scope="col"><center>Commission</center></th>
       <th colspan="2">UPDATE</th>
     </tr>
   </thead>
@@ -95,7 +97,9 @@ img, .logo {
       <td><center><?php echo $row['id']; ?></center></td>
       <td><center><?php echo $row['description']; ?></center></td>
       <td><center><?php echo $row['firstname']."&nbsp".$row['middle_initial'].".&nbsp".$row['lastname']."&nbsp".$row['Ext']; ?></center></td>
-      <td>
+      <td><center><?php echo $row['price']; ?></center></td>
+      <td><center><?php echo $row['commission']; ?></center></td>
+      <td> 
         <a href="servicesrecords_edit.php?edit=<?php echo $row['id']; ?>" class="edit_btn">Edit</a>
       </td>
       <td>
@@ -122,7 +126,7 @@ img, .logo {
     		while ($row = mysqli_fetch_array($results)) {
 
     	?>
-    	<option value="<?php echo $row['service_code']; ?>"><?php echo $row['description'] ?></option>
+    	<option value="<?php echo $row['service_code']; ?>"><?php echo $row['description']." ₱". $row['price']." (".$row['commission'].")" ?></option>
     	<?php
     		}
 
