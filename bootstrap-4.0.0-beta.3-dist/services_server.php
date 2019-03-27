@@ -1,7 +1,7 @@
 <?php 
-	session_start();
-	$db = mysqli_connect('localhost', 'root', '', 'leSpa');
 
+	$db = mysqli_connect('localhost', 'root', '', 'leSpa');
+	
 	// initialize variables
 	$description = "";
 	$price= "";

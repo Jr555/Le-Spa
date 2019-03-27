@@ -1,22 +1,27 @@
 <?php 
 	session_start();
-	$db = mysqli_connect('localhost', 'root', '', 'leSpa');
+	$db = mysqli_connect('localhost', 'root', '', 'lespa');
 
 	// initialize variables
-	$id = "";
-	$service_code= "";
-	$employee_no = "";
+	// $id = "";
+	// $service_code= "";
+	// $employee_no = "";
+	// $price= "";
+ //    $commission= "";
 	$update = false;
 
 	if (isset($_GET['save'])) {
 		$username = $_SESSION['username'];
+		$id = $_GET['id'];
 		$service_code = $_GET['service_code'];
 		$employee_no = $_GET['employee_no'];
+		$price = $_GET['price'];
+		$commission = $_GET['commission'];
 
-		$query =  "INSERT INTO service_records (service_code, employee_no) VALUES ($service_code, '$employee_no')";
+		$query =  "INSERT INTO `service_records` (`id`, `service_code`, `employee_no`, `price`, `commission`) VALUES ($id, $service_code, $employee_no, $price, $commission)";
 		mysqli_query($db,$query); 
 		$_SESSION['message']; 
-		header('location: ServiceRecords.php?username='.$username);
+	    header('location: ServiceRecords.php?username='.$username);
 	}
 
     if (isset($_POST['update'])) {
@@ -42,8 +47,8 @@ if (isset($_GET['del'])) {
 	header('location: ServiceRecords.php?username='.$row['username']);
 }
 
-    
-	
+    $results = mysqli_query($db, "SELECT * FROM service_records,service,employee WHERE service_records.service_code = service.service_code AND       
+    	service_records.employee_no = employee.employee_no");
 
 	//Add button
 	if(isset($_POST['back'])){

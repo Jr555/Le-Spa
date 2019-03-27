@@ -39,20 +39,30 @@ img, .logo {
    <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a>
+      	<button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="List of Employees">
+          <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a>
+        </button>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Customer.php?username=<?php echo $_GET['username'];?>">Customer</a>
+	  	<button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="List of Customers">
+          <a class="nav-link" href="Customer.php?username=<?php echo $_GET['username'];?>">Customer</a>
+        </button>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
+	  	<button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="List of Services">
+          <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
+        </button>
       </li> 
       <li class="nav-item">
-        <a class="nav-link" href="CustomerRecords.php?username=<?php echo $_GET['username'];?>">Customer Records</a>
+      	<button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Records of Customers">
+          <a class="nav-link" href="CustomerRecords.php?username=<?php echo $_GET['username'];?>">Customer Records</a>
+        </button>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="ServiceRecords.php?username=<?php echo $_GET['username'];?>">Service Records</a>
-      </li><br>
+      	<button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Records of Services">
+          <a class="nav-link" href="ServiceRecords.php?username=<?php echo $_GET['username'];?>">Service Records</a>
+        </button>
+      </li>
     </ul>
     <div class="form-inline my-4 my-lg-0">
       <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Bachelor of Science in 
