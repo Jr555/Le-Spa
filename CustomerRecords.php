@@ -53,20 +53,30 @@ img, .logo {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a> 
+        <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="List of Employees">
+          <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a>
+        </button>
       </li>
     <li class="nav-item">
-        <a class="nav-link" href="Customer.php?username=<?php echo $_GET['username'];?>">Customer</a>
+      <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="List of Customers">
+          <a class="nav-link" href="Customer.php?username=<?php echo $_GET['username'];?>">Customer</a>
+        </button>
       </li>
     <li class="nav-item">
-        <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
+      <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="List of Services">
+          <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
+        </button>
       </li> 
-    <li class="nav-item">
-        <a class="nav-link" href="CustomerRecords.php?username=<?php echo $_GET['username'];?>">Customer Records</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="ServiceRecords.php?username=<?php echo $_GET['username'];?>">Service Records</a>
-    </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Records of Customers">
+          <a class="nav-link" href="CustomerRecords.php?username=<?php echo $_GET['username'];?>">Customer Records</a>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Records of Services">
+          <a class="nav-link" href="ServiceRecords.php?username=<?php echo $_GET['username'];?>">Service Records</a>
+        </button>
+      </li>
     </ul>
     <div class="form-inline my-2 my-lg-0">
       <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Bachelor of Science in 
@@ -84,14 +94,16 @@ img, .logo {
   <thead class="thead-dark">
     <tr><h1><center><font color="red">Customer Records</font></center></h1></tr>
     <tr>
+      <th></th>
       <th scope="col"><center>ID</center></th>
       <th scope="col"><center>Customer Name</center></th>
       <th scope="col"><center>Date</center></th>
-      <th scope="col">UPDATE</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <?php while ($row = mysqli_fetch_array($results)) { ?>
     <tr>
+      <td></td>
       <td><center><?php echo $row['id']; ?></center></td>
       <td><center><?php echo $row['customer_no'] ?></center></td>
       <td><center><?php echo $row['date']; ?></center></td>
@@ -119,7 +131,7 @@ img, .logo {
         while ($row = mysqli_fetch_array($results)) {
 
       ?>
-      <option value="<?php echo $row['customer_no']; ?>"><?php echo $row['firstname']." ".$row['middle_initial']." ".$row['lastname']." ".$row['Ext'] ?></option>
+      <option value="<?php echo $row['customer_no']; ?>"><?php echo $row['firstname']." ".$row['middle_initial'].". ".$row['lastname']." ".$row['Ext'] ?></option>
       <?php
         }
 

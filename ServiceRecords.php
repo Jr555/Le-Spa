@@ -53,20 +53,30 @@ img, .logo {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a> 
+        <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="List of Employees">
+          <a class="nav-link" href="Employee.php?username=<?php echo $_GET['username'];?>">Employee</a>
+        </button>
       </li>
     <li class="nav-item">
-        <a class="nav-link" href="Customer.php?username=<?php echo $_GET['username'];?>">Customer</a>
+      <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="List of Customers">
+          <a class="nav-link" href="Customer.php?username=<?php echo $_GET['username'];?>">Customer</a>
+        </button>
       </li>
     <li class="nav-item">
-        <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
+      <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="List of Services">
+          <a class="nav-link" href="Services.php?username=<?php echo $_GET['username'];?>">Service</a>
+        </button>
       </li> 
-    <li class="nav-item">
-        <a class="nav-link" href="CustomerRecords.php?username=<?php echo $_GET['username'];?>">Customer Records</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="ServiceRecords.php?username=<?php echo $_GET['username'];?>">Service Records</a>
-    </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Records of Customers">
+          <a class="nav-link" href="CustomerRecords.php?username=<?php echo $_GET['username'];?>">Customer Records</a>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Records of Services">
+          <a class="nav-link" href="ServiceRecords.php?username=<?php echo $_GET['username'];?>">Service Records</a>
+        </button>
+      </li>
     </ul>
     <div class="form-inline my-2 my-lg-0">
       <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Bachelor of Science in 
@@ -84,6 +94,7 @@ img, .logo {
   <thead class="thead-dark">
     <tr><h1><center><font color="red">Service Records</font></center></h1></tr>
     <tr>
+      <th></th>
       <th scope="col"><center>ID</center></th>
       <th scope="col"><center>Service Name</center></th>
       <th scope="col"><center>Employee Name</center></th>
@@ -94,14 +105,12 @@ img, .logo {
   </thead>
   <?php while ($row = mysqli_fetch_array($results)) { ?>
     <tr>
+      <td></td>
       <td><center><?php echo $row['id']; ?></center></td>
       <td><center><?php echo $row['description']; ?></center></td>
       <td><center><?php echo $row['firstname']."&nbsp".$row['middle_initial'].".&nbsp".$row['lastname']."&nbsp".$row['Ext']; ?></center></td>
       <td><center><?php echo $row['price']; ?></center></td>
       <td><center><?php echo $row['commission']; ?></center></td>
-      <td> 
-        <a href="servicesrecords_edit.php?edit=<?php echo $row['id']; ?>" class="edit_btn">Edit</a>
-      </td>
       <td>
         <a href="servicesrecords_server.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
       </td>
@@ -113,6 +122,26 @@ img, .logo {
 
 <form action="" method="GET">
   <b>
+  <div class="col-md-13 mb-13">
+    <label>ID</label>
+    <select class="form-control" name="id">
+      <option value=""></option>
+      <?php 
+        include('customerrecords_server.php');
+
+        ?>
+      <?php
+        $sql = mysqli_query($db,"SELECT * FROM customer_records");
+        while ($row = mysqli_fetch_array($results)) {
+
+      ?>
+      <option value="<?php echo $row['id']; ?>"><?php echo $row['id'] ?></option>
+      <?php
+        }
+
+       ?>
+    </select>
+  </div>
   <div class="col-md-13 mb-13">
     <label>Service Name</label>
     <select class="form-control" name="service_code">
@@ -126,7 +155,7 @@ img, .logo {
     		while ($row = mysqli_fetch_array($results)) {
 
     	?>
-    	<option value="<?php echo $row['service_code']; ?>"><?php echo $row['description']." ₱". $row['price']." (".$row['commission'].")" ?></option>
+    	<option value="<?php echo $row['service_code']; ?>"><?php echo $row['description'] ?></option>
     	<?php
     		}
 
@@ -146,11 +175,51 @@ img, .logo {
     		while ($row = mysqli_fetch_array($results)) {
 
     	?>
-    	<option value="<?php echo $row['employee_no']; ?>"><?php echo $row['firstname']." ".$row['middle_initial']." ".$row['lastname']." ".$row['Ext'] ?></option>
+    	<option value="<?php echo $row['employee_no']; ?>"><?php echo $row['firstname']." ".$row['middle_initial'].". ".$row['lastname']." ".$row['Ext'] ?></option>
     	<?php
     		}
 
     	 ?>
+    </select>
+  </div>
+  <div class="col-md-13 mb-13">
+    <label>Price</label>
+    <select class="form-control" name="price">
+      <option value=""></option>
+      <?php 
+        include('services_server.php');
+
+        ?>
+      <?php
+        $sql = mysqli_query($db,"SELECT * FROM service");
+        while ($row = mysqli_fetch_array($results)) {
+
+      ?>
+      <option value="<?php echo $row['service_code']; ?>"><?php echo $row['price'] ?></option>
+      <?php
+        }
+
+       ?>
+    </select>
+  </div>
+  <div class="col-md-13 mb-13">
+    <label>Commission</label>
+    <select class="form-control" name="commission">
+      <option value=""></option>
+      <?php 
+        include('services_server.php');
+
+        ?>
+      <?php
+        $sql = mysqli_query($db,"SELECT * FROM service");
+        while ($row = mysqli_fetch_array($results)) {
+
+      ?>
+      <option value="<?php echo $row['service_code']; ?>"><?php echo $row['commission'] ?></option>
+      <?php
+        }
+
+       ?>
     </select>
   </div><br>
 </b>
