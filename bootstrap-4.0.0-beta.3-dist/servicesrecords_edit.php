@@ -111,11 +111,11 @@ img, .logo {
       <td><center><?php echo $row['firstname']."&nbsp".$row['middle_initial'].".&nbsp".$row['lastname']."&nbsp".$row['Ext']; ?></center></td>
       <td><center><?php echo $row['price']; ?></center></td>
       <td><center><?php echo $row['commission']; ?></center></td>
-      <td> 
-        <a href="servicesrecords_edit.php?edit=<?php echo $row['id']; ?>" class="edit_btn">Edit</a>
+      <td>
+        <a href="servicesrecords_edit.php?del=<?php echo $row['id']; ?>" class="badge badge-success">Edit</a>
       </td>
       <td>
-        <a href="servicesrecords_server.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
+        <a href="servicesrecords_server.php?del=<?php echo $row['id']; ?>" class="badge badge-danger">Delete</a>
       </td>
     </tr>
   <?php } 

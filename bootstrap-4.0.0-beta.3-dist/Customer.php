@@ -126,10 +126,10 @@ button {
 			<td><center><?php echo $row['contact_number']; ?></center></td>
 
 			<td>
-				<a href="customer_edit.php?edit=<?php echo $row['customer_no']; ?>" class="edit_btn" >Edit</a>
+				<a href="customer_edit.php?edit=<?php echo $row['customer_no']; ?>" class="badge badge-success" >Edit</a>
 			</td>
 			<td>
-				<a href="customer_server.php?del=<?php echo $row['customer_no']; ?>" class="del_btn">Delete</a>
+				<a href="customer_server.php?del=<?php echo $row['customer_no']; ?>" class="badge badge-danger">Delete</a>
 			</td>
 		</tr>
 	<?php } 

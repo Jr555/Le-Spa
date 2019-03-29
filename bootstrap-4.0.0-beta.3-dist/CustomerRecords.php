@@ -108,7 +108,7 @@ img, .logo {
       <td><center><?php echo $row['customer_no'] ?></center></td>
       <td><center><?php echo $row['date']; ?></center></td>
       <td>
-        <a href="customerrecords_server.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
+        <a href="customerrecords_server.php?del=<?php echo $row['id']; ?>" class="badge badge-danger">Delete</a>
       </td>
     </tr>
   <?php } 

@@ -67,6 +67,8 @@ if (isset($_GET['del'])) {
 				$id = $n['id'];
 				$service_code = $n['service_code'];
 				$employee_no = $n['employee_no'];
+				$price = $n['price'];
+				$commission = $n['commission'];
 			}
 		}
 

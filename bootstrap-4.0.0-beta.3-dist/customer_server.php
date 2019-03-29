@@ -53,7 +53,6 @@ if (isset($_GET['del'])) {
 	header('location: Customer.php?username='.$row['username']);
 }
 
-
 	$results = mysqli_query($db, "SELECT * FROM customer");
 
 

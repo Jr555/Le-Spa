@@ -119,10 +119,10 @@ img, .logo {
 			<td><center><?php echo $row['lastname']; ?></center></td>
 			<td><center><?php echo $row['Ext']; ?></center></td>
 			<td>
-				<a href="edit.php?edit=<?php echo $row['employee_no']; ?>" class="edit_btn" >Edit</a>
+				<a href="edit.php?edit=<?php echo $row['employee_no']; ?>" class="badge badge-success" >Edit</a>
 			</td>
 			<td>
-				<a href="server1.php?del=<?php echo $row['employee_no']; ?>" class="del_btn">Delete</a>
+				<a href="server1.php?del=<?php echo $row['employee_no']; ?>" class="badge badge-danger">Delete</a>
 			</td>
 		</tr>
 	<?php } 

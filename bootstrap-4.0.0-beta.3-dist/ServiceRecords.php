@@ -112,7 +112,7 @@ img, .logo {
       <td><center><?php echo $row['price']; ?></center></td>
       <td><center><?php echo $row['commission']; ?></center></td>
       <td>
-        <a href="servicesrecords_server.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
+        <a href="servicesrecords_server.php?del=<?php echo $row['id']; ?>" class="badge badge-danger">Delete</a>
       </td>
     </tr>
   <?php } 

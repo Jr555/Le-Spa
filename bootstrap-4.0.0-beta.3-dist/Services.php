@@ -109,10 +109,10 @@ img, .logo {
 			<td><center><?php echo $row['duration']; ?></center></td>
 			<td><center>₱ <?php echo $row['commission']; ?></center></td>
 			<td>
-				<a href="services_edit.php?edit=<?php echo $row['service_code']; ?>" class="edit_btn" >Edit</a>
+				<a href="services_edit.php?edit=<?php echo $row['service_code']; ?>" class="badge badge-success" >Edit</a>
 			</td>
 			<td>
-				<a href="services_server.php?del=<?php echo $row['service_code']; ?>" class="del_btn">Delete</a>
+				<a href="services_server.php?del=<?php echo $row['service_code']; ?>" class="badge badge-danger">Delete</a>
 			</td>
 		</tr>
 	<?php } 
