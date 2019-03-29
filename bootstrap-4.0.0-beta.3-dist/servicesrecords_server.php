@@ -15,10 +15,8 @@
 		$id = $_GET['id'];
 		$service_code = $_GET['service_code'];
 		$employee_no = $_GET['employee_no'];
-		$price = $_GET['price'];
-		$commission = $_GET['commission'];
 
-		$query =  "INSERT INTO `service_records` (`id`, `service_code`, `employee_no`, `price`, `commission`) VALUES ($id, $service_code, $employee_no, $price, $commission)";
+		$query =  "INSERT INTO `service_records` (`id`, `service_code`, `employee_no`) VALUES ($id, $service_code, $employee_no )";
 		mysqli_query($db,$query); 
 		$_SESSION['message']; 
 	    header('location: ServiceRecords.php?username='.$username);

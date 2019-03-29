@@ -155,7 +155,7 @@ img, .logo {
     		while ($row = mysqli_fetch_array($results)) {
 
     	?>
-    	<option value="<?php echo $row['service_code']; ?>"><?php echo $row['description'] ?></option>
+    	<option value="<?php echo $row['service_code']; ?>"><?php echo $row['description']." ₱".$row['price']." (".$row['commission'].")" ?></option>
     	<?php
     		}
 
@@ -180,46 +180,6 @@ img, .logo {
     		}
 
     	 ?>
-    </select>
-  </div>
-  <div class="col-md-13 mb-13">
-    <label>Price</label>
-    <select class="form-control" name="price">
-      <option value=""></option>
-      <?php 
-        include('services_server.php');
-
-        ?>
-      <?php
-        $sql = mysqli_query($db,"SELECT * FROM service");
-        while ($row = mysqli_fetch_array($results)) {
-
-      ?>
-      <option value="<?php echo $row['service_code']; ?>"><?php echo $row['price'] ?></option>
-      <?php
-        }
-
-       ?>
-    </select>
-  </div>
-  <div class="col-md-13 mb-13">
-    <label>Commission</label>
-    <select class="form-control" name="commission">
-      <option value=""></option>
-      <?php 
-        include('services_server.php');
-
-        ?>
-      <?php
-        $sql = mysqli_query($db,"SELECT * FROM service");
-        while ($row = mysqli_fetch_array($results)) {
-
-      ?>
-      <option value="<?php echo $row['service_code']; ?>"><?php echo $row['commission'] ?></option>
-      <?php
-        }
-
-       ?>
     </select>
   </div><br>
 </b>
